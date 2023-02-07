@@ -7,7 +7,7 @@ $(function () {
   var timeBlockInt;
   var todayLocalStorage = dayjs().format('M/D/YYYY');
   localStorage.setItem('date', todayLocalStorage); 
-
+//Change time blocks to current sestting.
   for (let i = 0; i < timeBlockElements.length; i++) {
     timeBlockInt = Number(timeBlockElements[i].id);
     if (currentTime < timeBlockInt) {
@@ -18,14 +18,14 @@ $(function () {
       timeBlockElements[i].classList.add('present');
     }
   }
-
+// Save inputs to local storage
   saveButtonElements.click(function () {
     var item = $(this)
     var id = item.parent().attr('id');
     var eventInput = item.siblings('.description').val();
     localStorage.setItem(id, eventInput);
   })
-  
+  //check local storage and add to schedule 
   if (localStorage) {
     var savedEventTimeBlockId;
     var savedEventText;
@@ -38,7 +38,7 @@ $(function () {
       savedEventText = localStorage.getItem(savedEventTimeBlockId);
 
       if (localStorage.key(i) === "date") {
-        if (localStorage.getItem(savedEventTimeBlockId) != todayLocalStorage) { // rename variable
+        if (localStorage.getItem(savedEventTimeBlockId) != todayLocalStorage) { 
           localStorage.clear();
         } 
       }
